@@ -8,3 +8,12 @@ color: white;
 background-color: black;
 
 }
+div.dice {
+  float: left;
+  width: 40px;
+  border-style: dotted;
+  paddiing: 15px;
+  font-size: 30px;
+  text-align: center;
+  margin: 10px;
+}
