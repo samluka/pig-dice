@@ -12,16 +12,6 @@ font-size: 20px;
 font-family: 'Indie Flower', cursive;
 
 }
-
-.change {
-  border-style: dotted;
-  padding: 15px;
-  font-size: 10px;
-  text-align: center;
-  margin: 10px;
-  height: 200px;
-
-}
 .btn-new {
   border-radius: 5px;
 
