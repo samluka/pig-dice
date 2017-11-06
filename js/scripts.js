@@ -1,13 +1,13 @@
+var scores, roundScore, activePlayer, gamePlaying;
 
+init();
 
-
-
-
-
+//getter
+//var x = document.querySelector('#score-0').textContent;
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
   if(gamePlaying){
-    //what happens when someone clicks the button
+    //what happens when someone clicks the button?
     //first we need a random number
     var dice = Math.floor(Math.random() *6) + 1
 
@@ -17,63 +17,62 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     diceDOM.src = 'dice-' + dice + '.png';
 
 
-    // update round score but only if the rolled number was not a 1
+    //then update round score but only if the rolled number was not a 1
 
-         if(dice !== 1){//if dice is different from 1
-           //add score
-           roundScore += dice;
-           // display the score
-           document.querySelector('#current-' + activePlayer).textContent = roundScore;
-           } else {
-             //next player
-             nextPlayer();
-         }
+      if(dice !== 1){//if dice is different from 1
+        //add score
+        roundScore += dice;
+        //then display the score
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        } else {
+          //next player
+          nextPlayer();
+      }
 
-     }
+  }
 
-   });
+});
 
-   document.querySelector('.btn-hold').addEventListener('click', function(){
-     if (gamePlaying){
-       //add current score to players overall score
-       scores[activePlayer] += roundScore;
+document.querySelector('.btn-hold').addEventListener('click', function(){
+  if (gamePlaying){
+    //add current score to players global score
+    scores[activePlayer] += roundScore;
 
-       //update UI
-       document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+    //update UI
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-       //check if player won the game?
-       if (scores[activePlayer] >= 100){
-         document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-         document.querySelector('.dice').style.display = 'none';
-         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
-         document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
-         gamePlaying = false;
-       } else {
-           nextPlayer();
-         }
-     }
+    //check if player won the game?
+    if (scores[activePlayer] >= 100){
+      document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+      document.querySelector('.dice').style.display = 'none';
+      document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+      document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+      gamePlaying = false;
+    } else {
+        nextPlayer();
+      }
+  }
 
-   });
+});
 
-   function nextPlayer(){
-     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-     roundScore = 0;
+function nextPlayer(){
+  activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+  roundScore = 0;
 
-     document.getElementById('current-0').textContent = '0';
-     document.getElementById('current-1').textContent = '0';
+  document.getElementById('current-0').textContent = '0';
+  document.getElementById('current-1').textContent = '0';
 
-     document.querySelector('.player-0-panel').classList.toggle('active');
-     document.querySelector('.player-1-panel').classList.toggle('active');
-
-
-     document.querySelector('.dice').style.display = 'none'
-   }
+  document.querySelector('.player-0-panel').classList.toggle('active');
+  document.querySelector('.player-1-panel').classList.toggle('active');
 
 
-//starting a new game after one player wins or both players draw
+  document.querySelector('.dice').style.display = 'none'
+}
+
+//start a new game
 document.querySelector('.btn-new').addEventListener('click', init);
 
-//where the new game is started ;after clicking the start new game
+//this starts the game
 function init(){
   scores = [0,0];
   activePlayer = 0;
